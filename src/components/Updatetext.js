@@ -1,12 +1,19 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 export const Updatetext = () => {
   const texts = useSelector((state) => state.getText);
   const dispatch = useDispatch();
+  let location = useLocation();
 
-  console.log(useParams().id);
+  let history = useNavigate();
+  console.log(location);
+
+  function handleClick() {
+    console.log('test');
+    history('/text/tes');
+  }
 
   return (
     <>
@@ -18,6 +25,9 @@ export const Updatetext = () => {
           dispatch({ type: 'addtext', payload: event.target.value })
         }
       />
+      <button type="button" onClick={handleClick}>
+        Go home
+      </button>
     </>
   );
 };
